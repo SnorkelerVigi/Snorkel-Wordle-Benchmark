@@ -1,11 +1,11 @@
 # Wordle AI Benchmark
 
-A comprehensive benchmarking framework for evaluating Large Language Models (LLMs) on Wordle puzzle-solving tasks. This tool tests various AI models' ability to solve challenging Wordle puzzles using strategic reasoning and iterative feedback.
+A comprehensive benchmarking framework for evaluating Large Language Models (LLMs) on Wordle. This tests various AI models' ability to solve challenging Wordle puzzles using strategic reasoning and iterative feedback.
 
 ## 🎯 Features
 
 - **Multi-Provider Support**: Works with OpenRouter, LiteLLM, and local vLLM servers
-- **Comprehensive Testing**: Evaluate models on 104 carefully selected "fiendish" words
+- **Comprehensive Testing**: Evaluate models on 100 carefully selected "fiendish" words
 - **Detailed Analytics**: Track success rates, token usage, costs, and solving strategies
 - **Concurrent Processing**: Multi-threaded execution for efficient batch testing
 - **Rich Output**: JSON trajectories with complete reasoning chains and game states
@@ -257,45 +257,3 @@ logging.basicConfig(level=logging.DEBUG)
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
-
-### Development Setup
-
-```bash
-# Install development dependencies
-uv sync --dev
-
-# Run tests
-python -m pytest tests/
-
-# Format code
-black .
-isort .
-```
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Wordle game concept by Josh Wardle
-- "Fiendish" word list curated for maximum difficulty
-- Built with LiteLLM for multi-provider compatibility
-- Uses PyEnchant for word validation
-
-## 📈 Performance Benchmarks
-
-Recent benchmark results on our "fiendish" word set:
-
-| Model | Success Rate | Avg Cost | Avg Turns |
-|-------|-------------|----------|-----------|
-| GPT-4o | 87% | $0.023 | 4.2 |
-| Claude-3.5-Sonnet | 83% | $0.019 | 4.4 |
-| Llama-3.1-70B | 76% | $0.008 | 4.7 |
-| GPT-3.5-Turbo | 68% | $0.004 | 5.1 |
-
-*Results may vary based on API versions and word selection*
-
----
-
-**Happy benchmarking! 🎯**
