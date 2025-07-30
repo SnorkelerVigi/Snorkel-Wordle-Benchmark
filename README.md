@@ -10,6 +10,25 @@ A comprehensive benchmarking framework for evaluating Large Language Models (LLM
 - **Concurrent Processing**: Multi-threaded execution for efficient batch testing
 - **Rich Output**: JSON trajectories with complete reasoning chains and game states
 
+## 🎯 Example Game Progression
+
+Mode : claude-opus-4-20250514
+Cost of this completion : $0.23
+Solved in : 4 Turns
+
+**Turn 1**
+![Turn 1](Assets/Images/Image%201.png)
+
+**Turn 2** 
+![Turn 2](Assets/Images/Image%202.png)
+
+**Turn 3**
+![Turn 3](Assets/Images/Image%203.png)
+
+**Turn 4**
+![Turn 4](Assets/Images/Image%204.png)
+
+
 ## 📋 Requirements
 
 - Python ≥ 3.12
@@ -96,9 +115,16 @@ The script will:
 wordle-ai-benchmark/
 ├── wordle_env.py           # Main benchmark script
 ├── type.py                 # Pydantic models for data structures
-├── FiendishWords.py        # Curated list of challenging words
-├── data.py                 # Complete word database (13K+ words)
+├── Assets/
+│   └── Images/             # Documentation images
+│       ├── Image 1.png
+│       ├── Image 2.png
+│       ├── Image 3.png
+│       └── Image 4.png
 ├── Data/
+│   ├── __init__.py         # Package initialization
+│   ├── FiendishWords.py    # Curated list of challenging words
+│   ├── data.py             # Complete word database (13K+ words)
 │   ├── models.yaml         # Models to test
 │   ├── all_models.yaml     # Extended model list
 │   └── English Words Dictionary.json
@@ -151,10 +177,10 @@ self.max_turns = 6
 
 To test with different word sets:
 
-1. Create your word list following the `Word` model structure
+1. Create your word list following the `Word` model structure in the `Data/` folder
 2. Import in `wordle_env.py`:
    ```python
-   from your_module import YOUR_WORDS
+   from Data.your_module import YOUR_WORDS
    self.dataset = self.get_dataset_from_words(YOUR_WORDS)
    ```
 
