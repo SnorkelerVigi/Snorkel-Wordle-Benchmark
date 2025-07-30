@@ -12,9 +12,9 @@ A comprehensive benchmarking framework for evaluating Large Language Models (LLM
 
 ## 🎯 Example Game Progression
 
-Mode : claude-opus-4-20250514
-Cost of this completion : $0.23
-Solved in : 4 Turns
+** Mode : claude-opus-4-20250514
+** Cost of this completion : $0.23
+** Solved in : 4 Turns
 
 **Turn 1**
 ![Turn 1](Assets/Images/Image%201.png)
