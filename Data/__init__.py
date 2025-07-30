@@ -1,0 +1,1 @@
+# Data package for Wordle AI Benchmark

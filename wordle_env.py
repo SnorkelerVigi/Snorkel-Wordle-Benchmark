@@ -8,7 +8,7 @@ import copy
 from tqdm import tqdm
 from typing import List, Optional, Any
 from type import Word, Trajectory
-from FiendishWords import FIENDISH_WORDS
+from Data.FiendishWords import FIENDISH_WORDS
 import threading
 import random
 from concurrent.futures import ThreadPoolExecutor, as_completed, ProcessPoolExecutor
