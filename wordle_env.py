@@ -169,9 +169,22 @@ class GameState:
             
         # Initialize OpenRouter client if needed
         if self.inference_source == InferenceSource.OPENROUTER:
+            import httpx
+            # Create a custom httpx client with SSL configuration
+            httpx_client = httpx.Client(
+                timeout=httpx.Timeout(60.0),  # 60 second timeout
+                limits=httpx.Limits(max_keepalive_connections=5, max_connections=10),
+                verify=True  # Keep SSL verification enabled for security
+            )
+            
             self.openrouter_client = OpenAI(
                 api_key=os.getenv('OPENROUTER_API_KEY'),
-                base_url='https://openrouter.ai/api/v1'
+                base_url='https://openrouter.ai/api/v1',
+                http_client=httpx_client,
+                default_headers={
+                    "HTTP-Referer": "https://github.com/wordle-game",
+                    "X-Title": "Wordle AI Game"
+                }
             )
         self.W = Word(**W)
         self.trajectory = Trajectory(
@@ -257,29 +270,26 @@ class GameState:
                 raise
                 
         elif self.inference_source == InferenceSource.OPENROUTER:
-            # Use OpenRouter directly
+            # Use OpenRouter with the OpenAI client for better SSL handling
             try:
-                response = requests.post(
-                                    "https://openrouter.ai/api/v1/chat/completions",
-                                    headers={"Authorization": f"Bearer {os.getenv('OPENROUTER_API_KEY')}"},
-                                    json={
-                                        "model": self.model,
-                                        "messages": self.trajectory.messages
-                                    }
-                                )
-                response.raise_for_status()
-                response = response.json()
+                response = self.openrouter_client.chat.completions.create(
+                    model=self.model,
+                    messages=self.trajectory.messages
+                )
                 
-                # Check if response has error
-                if 'error' in response:
-                    raise Exception(f"OpenRouter API error: {response['error']}")
-                
-                # Validate response structure
-                if 'choices' not in response:
-                    raise Exception(f"Invalid response structure: missing 'choices' key. Response: {response}")
-                
-                if not response['choices'] or 'message' not in response['choices'][0]:
-                    raise Exception(f"Invalid response structure: missing message in choices. Response: {response}")
+                # Convert OpenAI response to expected dict format
+                response = {
+                    "choices": [{
+                        "message": {
+                            "content": response.choices[0].message.content
+                        }
+                    }],
+                    "usage": {
+                        "prompt_tokens": response.usage.prompt_tokens if response.usage else 0,
+                        "completion_tokens": response.usage.completion_tokens if response.usage else 0,
+                        "total_tokens": response.usage.total_tokens if response.usage else 0
+                    }
+                }
                 
                 # Handle usage tracking if available
                 if 'usage' in response:

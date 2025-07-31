@@ -28,3 +28,5 @@ openai/o4-mini
 nvidia/llama-3.3-nemotron-super-49b-v1
 nvidia/llama-3.1-nemotron-70b-instruct
 nvidia/llama-3.1-nemotron-ultra-253b-v1
+perplexity/sonar-reasoning-pro
+moonshotai/kimi-k2

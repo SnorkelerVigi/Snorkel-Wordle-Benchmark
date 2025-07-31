@@ -642,5 +642,20 @@
     "model": "gemini/gemini-2.5-pro",
     "inference_source": "litellm",
     "timestamp": "2025-07-24T21:47:22.146698"
+  },
+  {
+    "number_of_games": 100,
+    "games_won": 71,
+    "total_cost": 10.553067,
+    "first_guesses": {
+      "raise": 73,
+      "crane": 23,
+      "stare": 3,
+      "adieu": 1
+    },
+    "invalid_guesses_per_game": 0.04,
+    "model": "xai/grok-3-latest",
+    "inference_source": "litellm",
+    "timestamp": "2025-07-31T11:15:23.226546"
   }
 ]
